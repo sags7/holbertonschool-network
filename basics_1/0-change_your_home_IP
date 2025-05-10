@@ -4,7 +4,7 @@
 sudo cp /etc/hosts /etc/hosts.old
 
 if grep -E "127\.0\.0\.1[[:space:]]+localhost" /etc/hosts; then
-  sudo sed -i '/127.0.0.1[[:space:]]\+localhost/c\127.0.0.2 localhost' /etc/hosts
+  sudo sed -i '/127.0.0.1/c\127.0.0.2' /etc/hosts
 else
     echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts
 fi
