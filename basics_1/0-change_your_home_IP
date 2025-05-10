@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script cconfigures an Ubuntu server with specific settings.
 
-if grep -1 "127.0.0.1[[:space:]]+localhost" /etc/hosts; then
+if grep -q "127.0.0.1[[:space:]]+localhost" /etc/hosts; then
     sudo sed -i '/localhost/c\127.0.0.2 localhost' /etc/hosts
 else
     echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts
