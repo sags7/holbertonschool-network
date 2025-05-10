@@ -5,9 +5,13 @@ sudo cp /etc/hosts /etc/hosts.old
 
 if grep -E "127\.0\.0\.1[[:space:]]+localhost" /etc/hosts; then
   sudo sed -i '/127.0.0.1[[:space:]]\+localhost/c\127.0.0.2 localhost' /etc/hosts
+else
+    echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts
 fi
 
 if grep -q "facebook.com" /etc/hosts; then
     sudo sed -i '/facebook.com/c\8.8.8.8 facebook.com' /etc/hosts
+else 
+    echo "8.8.8.8 facebook.com" | sudo tee -a /etc/hosts
 fi
 cat /etc/hosts
