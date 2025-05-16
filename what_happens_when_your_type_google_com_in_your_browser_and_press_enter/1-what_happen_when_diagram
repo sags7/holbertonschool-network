@@ -1,0 +1,79 @@
+ ________________________
+|    Browser             |
+| https://www.google.com |
+|________________________|
+        |
+        v
+ __________________________
+|    DNS Resolution Steps  |
+|--------------------------|
+| 1. Browser Cache         |
+| 2. OS Cache              |
+| 3. Router Cache          |
+| 4. Recursive Resolver    |
+|    --> Root Name Server  |
+|      --> .com TLD        |
+|        --> Google’s      |
+|            Auth NS       |
+|        <-- IP Returned --|
+|__________________________|
+        |
+        v
+ _______________________
+|    TCP/IP Handshake   |
+|-----------------------|
+| SYN -->               |
+|      <-- SYN-ACK      |
+| ACK -->               |
+|_______________________|
+        |
+        v
+ _________________
+|    Firewalls    |
+|-----------------|
+| Local | Router  |
+|  ISP  | Google  |
+|_________________|
+        |
+        v
+ _____________________________
+|  HTTPS / SSL (TLS Handshake)|
+|-----------------------------|
+| ClientHello -->             |
+| <-- ServerHello + Cert      |
+| Cert Verified               |
+| Keys Exchanged              |
+|_____________________________|
+        |
+        v
+ ___________________
+|   Load Balancer   |
+|-------------------|
+| Routes to servers |
+| Load/Health check |
+|___________________|
+        |
+        v
+ ________________         ____________________
+|  Web Server    | ----> | Application Server |
+|  (e.g. Nginx)  |       | (Backend Logic)    |
+|________________|       |____________________|
+                                  |
+                                  v
+                          _________________
+                         |    Database     |
+                         |  (SQL / NoSQL)  |
+                         |_________________|
+                                  |
+                                  v
+                          _________________
+                         |  Response Sent  |
+                         |_________________|
+                                  |
+                                  v
+                 _____________________________
+                |  Browser Receives Response  |
+                |-----------------------------|
+                | Builds DOM, fetches assets  |
+                | Renders Google Homepage     |
+                |_____________________________|
